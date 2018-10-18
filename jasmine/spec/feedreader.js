@@ -9,10 +9,12 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
+
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
+
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
@@ -32,11 +34,29 @@ $(function() {
          * and that the URL is not empty.
          */
 
+        it('have a URL defined and not empty', function() {
+
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url).not.toBe("");
+            });
+
+        });
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+        it('have a name defined and not empty', function() {
+
+            allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe("");
+            });
+
+        });
+
     });
 
 
@@ -53,6 +73,8 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
