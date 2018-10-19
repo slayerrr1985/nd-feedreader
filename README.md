@@ -5,3 +5,4 @@ frontend nanodegree feed reader
 
 * Open index.html
 * Click on the menu button and select one of the feeds
+* Enjoy the reading!
