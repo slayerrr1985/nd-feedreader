@@ -23,6 +23,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
+
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
@@ -35,12 +36,10 @@ $(function() {
          */
 
         it('have a URL defined and not empty', function() {
-
             allFeeds.forEach(function(feed) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url).not.toBe("");
             });
-
         });
 
         /* TODO: Write a test that loops through each feed
@@ -49,14 +48,11 @@ $(function() {
          */
 
         it('have a name defined and not empty', function() {
-
             allFeeds.forEach(function(feed) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBe("");
             });
-
         });
-
     });
 
 
@@ -71,6 +67,7 @@ $(function() {
          */
 
         it('is hidden by default', function() {
+            // the menu is hidden so it should have the menu-hidden class
             expect(document.body.classList).toContain("menu-hidden");
         });
 
@@ -81,15 +78,17 @@ $(function() {
           */
 
         it('changes visibility when the menu icon is clicked', function() {
-            var menu = document.querySelector(".menu-icon-link");
+            let menu = document.querySelector(".menu-icon-link");
+            // the menu is hidden so it should have the menu-hidden class
             menu.click(); 
+            // when we click on it, the class should have been removed and the menu is shown
             expect(document.body.classList).not.toContain("menu-hidden");
+            // when we click again on it, the class should appear again
             menu.click(); 
             expect(document.body.classList).toContain("menu-hidden");
         });
 
     });
-
 
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -102,7 +101,8 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        var firstEntry;
+
+        let firstEntry;
 
         beforeEach(function(done){
             // we load a feed and search for the first entry element
@@ -113,12 +113,14 @@ $(function() {
         });
 
         it('loads at least one entry from feed', function(done) {
+            // the first entry exists
             expect(firstEntry).not.toBeNull();
             done();
         });
 
     });
 
+    
     /* TODO: Write a new test suite named "New Feed Selection" */
 
     describe('New Feed Selection', function() {
@@ -128,8 +130,24 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-        it('changes content with a new feed', function() {
+        let firstFeedEntry;
+        let secondFeedEntry;
 
+        beforeEach(function(done){
+            loadFeed(0,function(){
+                // we load the first feed and we save its first entry
+                firstFeedEntry = document.querySelector(".entry").innerHTML;
+                loadFeed(1,function(){
+                    // we load the second feed and we save its first entry
+                    secondFeedEntry = document.querySelector(".entry").innerHTML;
+                    done();
+                });
+            });
+        });
+
+        it('changes content with a new feed', function() {
+            // the first feed entry should be different from the second feed entry
+            expect(firstFeedEntry).not.toBe(secondFeedEntry);
         });
 
     })
