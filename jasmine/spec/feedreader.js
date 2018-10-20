@@ -14,12 +14,14 @@ $(function() {
     describe('RSS Feeds', function() {
 
         /* Checks if the variable allFeeds is defined and it is not empty */
+
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
         /* Checks if the feeds have correct URLs */
+
         it('have a URL defined and not empty', function() {
             allFeeds.forEach(function(feed) {
                 expect(feed.url).toBeDefined();
@@ -28,6 +30,7 @@ $(function() {
         });
 
         /* Checks if the feeds have correct names */
+        
         it('have a name defined and not empty', function() {
             allFeeds.forEach(function(feed) {
                 expect(feed.name).toBeDefined();
@@ -41,12 +44,14 @@ $(function() {
     describe('The menu', function() {
 
         /* Checks if the menu is hidden by default */
+
         it('is hidden by default', function() {
             // the menu is hidden so it should have the menu-hidden class
             expect(document.body.classList).toContain("menu-hidden");
         });
 
         /* Checks if the menu is shown/hidden when the icon is clicked */
+
         it('changes visibility when the menu icon is clicked', function() {
             let menu = document.querySelector(".menu-icon-link");
             // the menu is hidden so it should have the menu-hidden class
